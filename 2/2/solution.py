@@ -1,7 +1,7 @@
 import re
 
-with open("output.txt", "r") as file:
-    input_string = file.read()
+file = open("output.txt", "r")
+input_string = file.read()
 
 red_max = 12
 green_max = 13
@@ -21,16 +21,13 @@ for line in input_string.splitlines():
     greens = cast_to_int_and_sort(re.findall("(\d+) green", line))
     blues = cast_to_int_and_sort(re.findall("(\d+) blue", line))
 
-    if reds != None:
-        if int(reds[0]) > red_max:
-            continue
-    if greens != None:
-        if int(greens[0]) > green_max:
-            continue
-    if blues != None:
-        if int(blues[0]) > blue_max:
-            continue
+    if reds == None:
+        reds = list(1)
+    if greens == None:
+        greens = list(1)
+    if blues == None:
+        blues = list(1)
 
-    sum += int(a[0])
+    sum += reds[0] * greens[0] * blues[0]
 
 print(sum)
